@@ -72,7 +72,7 @@ public class CommunicateWithAWS {
     public void createSQS(String sqsName) {
         if (!s3Client.doesObjectExist(bucketName, sqsName)) {
             CreateQueueRequest create_request = new CreateQueueRequest(sqsName)
-                    .addAttributesEntry("DelaySeconds", "60")
+                    .addAttributesEntry("VisibilityTimeout", "60")
                     .addAttributesEntry("MessageRetentionPeriod", "86400");
             try {
                 sqs.createQueue(create_request);
